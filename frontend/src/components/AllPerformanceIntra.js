@@ -27,7 +27,7 @@ const AllPerformanceInra = () => {
                 return (
                     <tr key={index}>
                         <td>{item.key}</td>
-                        <td>{item.value.key}</td>
+                        <td>{item.value.key}%</td>
                         <td>{item.value.value}</td>
                     </tr>
                 )
