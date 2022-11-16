@@ -37,8 +37,8 @@ namespace Backend.Controllers
                 StockTimeSeries stockTs = await stocksClient.GetTimeSeriesAsync(stockSymbol.Str!, Interval.Daily, OutputSize.Compact, isAdjusted: true);
                 var dataPoints = stockTs.DataPoints.ToList().GetRange(0,7);
 
-                StockTimeSeries stockTsHourly = await stocksClient.GetTimeSeriesAsync(stockSymbol.Str!, Interval.Min60, OutputSize.Full, isAdjusted: true);
-                var dataPointsIntra = stockTs.DataPoints.ToList().GetRange(0, 24);
+                StockTimeSeries stockTsHourly = await stocksClient.GetTimeSeriesAsync(stockSymbol.Str!, Interval.Min60, OutputSize.Compact, isAdjusted: true);
+                var dataPointsIntra = stockTsHourly.DataPoints.ToList().GetRange(0, 24);
 
 
                 foreach (var dataPoint in dataPoints)
@@ -52,7 +52,7 @@ namespace Backend.Controllers
                                 dataPoint.HighestPrice,
                                 dataPoint.LowestPrice,
                                 dataPoint.OpeningPrice,
-                                dataPoint.Time,
+                                new DateTime(dataPoint.Time.Year, dataPoint.Time.Month, dataPoint.Time.Day, dataPoint.Time.Hour, dataPoint.Time.Minute, dataPoint.Time.Second),
                                 dataPoint.Volume
                             ));
                     }
@@ -78,7 +78,7 @@ namespace Backend.Controllers
                                 dataPoint.HighestPrice,
                                 dataPoint.LowestPrice,
                                 dataPoint.OpeningPrice,
-                                dataPoint.Time,
+                                new DateTime(dataPoint.Time.Year, dataPoint.Time.Month, dataPoint.Time.Day, dataPoint.Time.Hour, dataPoint.Time.Minute, dataPoint.Time.Second),
                                 dataPoint.Volume
                             ));
                     }

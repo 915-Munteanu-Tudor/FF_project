@@ -21,7 +21,7 @@ namespace Backend.Repository
 
         public DataPointIntra? Insert(DataPointIntra dataPointIntra)
         {
-            if (GetByName(dataPointIntra.Name).Count == 100)
+            if (GetByName(dataPointIntra.Name).Count == 24)
             {
                 throw new ArgumentException("This stock symbol is already in the database!");
             }
