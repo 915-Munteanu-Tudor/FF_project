@@ -27,23 +27,16 @@ namespace Backend.Services
             
         }
 
-        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> allPerformanceComparison()
+        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparison(String stock1)
         {
             try
             {
-                var list = _dataPointRepository.GetAllStockNames();
-                var performanceList = new List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>();
-
-                foreach (var item in list)
-                {
-                    performanceList.AddRange(_dataPointRepository.GetPerformanceBySymbol(item));
-                }
-
+                var performanceList = _dataPointRepository.GetPerformanceBySymbol(stock1);
                 return performanceList;
             }
             catch (Exception exc)
             {
-                return null;
+                throw new ArgumentException(exc.Message);
             }
 
         }

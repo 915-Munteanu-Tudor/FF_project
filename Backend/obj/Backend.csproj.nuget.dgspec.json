@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\munte\\Documents\\tudor\\AcademicInfo\\Backend\\Backend.csproj": {}
+    "C:\\Users\\munte\\Documents\\tudor\\tudor_things\\stuff\\FF_project_all\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\munte\\Documents\\tudor\\AcademicInfo\\Backend\\Backend.csproj": {
+    "C:\\Users\\munte\\Documents\\tudor\\tudor_things\\stuff\\FF_project_all\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\munte\\Documents\\tudor\\AcademicInfo\\Backend\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\munte\\Documents\\tudor\\tudor_things\\stuff\\FF_project_all\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "C:\\Users\\munte\\Documents\\tudor\\AcademicInfo\\Backend\\Backend.csproj",
+        "projectPath": "C:\\Users\\munte\\Documents\\tudor\\tudor_things\\stuff\\FF_project_all\\Backend\\Backend.csproj",
         "packagesPath": "C:\\Users\\munte\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\munte\\Documents\\tudor\\AcademicInfo\\Backend\\obj\\",
+        "outputPath": "C:\\Users\\munte\\Documents\\tudor\\tudor_things\\stuff\\FF_project_all\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\munte\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -116,7 +116,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -21,13 +21,13 @@ const Home = () => {
                 </a>
             </div>
             <div>
-                <a href="/all-performance-comparison">
+                <a href="/self-performance-comparison">
                     <button className="btn" variant="info">Compare Stocks Daily</button>
                     <br/><br/>
                 </a>
             </div>
             <div>
-                <a href="/all-performance-comparison-intra">
+                <a href="/self-performance-comparison-intra">
                     <button className="btn" variant="info">Compare Stocks Intraday</button>
                     <br/><br/>
                 </a>

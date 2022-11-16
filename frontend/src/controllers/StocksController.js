@@ -10,7 +10,7 @@ class StocksController {
 
             alert("Successfully got info about a new stock!");
         } catch (error) {
-            //console.error("error-insert",  error.response.data.message);
+            console.error("error-insert",  error.response.data.message);
             alert(error.response.data.message);
         }
     }
@@ -23,7 +23,6 @@ class StocksController {
         };
 
         const response = await axios.post('/performance-comparison', user, {headers: {'Content-Type': 'application/json'}});
-        //console.log(response.data);
         if (response.data === "") {
             alert("Comparison failed!");
             return "fail";
@@ -35,33 +34,36 @@ class StocksController {
 
     }
 
-    async getPerformancesDaily() {
-        try {
-            //console.log("new", stockSymbol);
-            //const usersName = JSON.stringify({"str": "SPY"});
+    async seeSelfPerformance(stockSymbol) {
+        const user = {
+            str: stockSymbol,
+        };
 
-            const response = await axios.post('/all-performance-comparison');
-            console.log(response.data)
-            //alert("Successfully got info about a new stock!");
+        const response = await axios.post('/self-performance-comparison', user, {headers: {'Content-Type': 'application/json'}});
+        if (response.data === "") {
+            alert("Comparison failed!");
+            return "fail";
+
+        }
+        else {
             return response.data;
-        } catch (error) {
-            console.error("error-comparison", error);
-            alert("Comparison failed", error);
         }
     }
 
-    async getPerformancesIntra() {
-        try {
-            //console.log("new", stockSymbol);
-            //const usersName = JSON.stringify({"str": "SPY"});
+    async seeSelfPerformanceIntra(stockSymbol) {
+        const user = {
+            str: stockSymbol,
+        };
 
-            const response = await axios.post('/all-performance-comparison-intra');
-            console.log(response.data)
-            //alert("Successfully got info about a new stock!");
+        const response = await axios.post('/self-performance-comparison-intra', user, {headers: {'Content-Type': 'application/json'}});
+        if (response.data === "") {
+            alert("Comparison failed!");
+            return "fail";
+
+        }
+        else {
+            console.log(response.data);
             return response.data;
-        } catch (error) {
-            console.error("error-comparison", error);
-            alert("Comparison failed", error);
         }
     }
 }

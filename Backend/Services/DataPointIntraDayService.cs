@@ -37,23 +37,17 @@ namespace Backend.Services
             }
 
         }
-        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> allPerformanceComparison()
+        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparisonIntra(String stock1)
         {
+
             try
             {
-                var list = _dataPointIntraDayRepo.GetAllStockNames();
-                var performanceList = new List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>();
-
-                foreach (var item in list)
-                {
-                    performanceList.AddRange(_dataPointIntraDayRepo.GetPerformanceBySymbol(item));
-                }
-
+                var performanceList = _dataPointIntraDayRepo.GetPerformanceBySymbol(stock1);
                 return performanceList;
             }
             catch (Exception exc)
             {
-                return null;
+                throw new ArgumentException(exc.Message);
             }
 
         }

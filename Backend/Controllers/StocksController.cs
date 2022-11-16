@@ -125,12 +125,12 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        [Route("all-performance-comparison")]
-        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> allPerformanceComparison()
+        [Route("self-performance-comparison")]
+        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparison(StockName name)
         {
             try
             {
-                var res = _dataPointService.allPerformanceComparison();
+                var res = _dataPointService.selfPerformanceComparison(name.Str);
                 return await res;
             }
             catch (Exception exc)
@@ -141,12 +141,12 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        [Route("all-performance-comparison-intra")]
-        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> allPerformanceComparisonIntra()
+        [Route("self-performance-comparison-intra")]
+        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparisonIntra(StockName name)
         {
             try
             {
-                var res = _dataPointIntraDayService.allPerformanceComparison();
+                var res = _dataPointIntraDayService.selfPerformanceComparisonIntra(name.Str);
                 return await res;
             }
             catch (Exception exc)

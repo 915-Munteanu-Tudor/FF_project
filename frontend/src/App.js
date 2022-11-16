@@ -1,9 +1,9 @@
 import { BrowserRouter as Router,Route, Routes } from 'react-router-dom';
 import './App.css';
-import GetStockInfo from './components/GetStockInfo';
-import PerformanceComparison from './components/PerformanceComparison'
-import AllPerformance from './components/AllPerformance'
-import AllPerformanceIntra from './components/AllPerformanceIntra'
+import AddStock from './components/GetStockInfo';
+import SeePerformance from './components/PerformanceComparison'
+import SelfPerformance from './components/SelfPerformanceComparison'
+import SelfPerformanceIntra from './components/SelfPerformanceIntra'
 import Home from './components/Home';
 
 function App() {
@@ -12,10 +12,10 @@ function App() {
        <Router>
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route exact path="/save" element={<GetStockInfo />} />
-            <Route exact path="/performance-comparison" element={<PerformanceComparison />}  />
-            <Route exact path="/all-performance-comparison" element={<AllPerformance />} />
-            <Route exact path="/all-performance-comparison-intra" element={<AllPerformanceIntra />} />
+            <Route exact path="/save" element={<AddStock />} />
+            <Route exact path="/performance-comparison" element={<SeePerformance />}  />
+            <Route exact path="/self-performance-comparison" element={<SelfPerformance />} />
+            <Route exact path="/self-performance-comparison-intra" element={<SelfPerformanceIntra />} />
           </Routes>
         </Router>
     </div>
