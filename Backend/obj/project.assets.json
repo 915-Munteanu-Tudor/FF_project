@@ -9694,11 +9694,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\munte\\Documents\\tudor\\tudor_things\\stuff\\FF_project_all\\Backend\\Backend.csproj",
+      "projectUniqueName": "C:\\Users\\munte\\Documents\\tudor\\tudor_things\\FF_project\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "C:\\Users\\munte\\Documents\\tudor\\tudor_things\\stuff\\FF_project_all\\Backend\\Backend.csproj",
+      "projectPath": "C:\\Users\\munte\\Documents\\tudor\\tudor_things\\FF_project\\Backend\\Backend.csproj",
       "packagesPath": "C:\\Users\\munte\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\munte\\Documents\\tudor\\tudor_things\\stuff\\FF_project_all\\Backend\\obj\\",
+      "outputPath": "C:\\Users\\munte\\Documents\\tudor\\tudor_things\\FF_project\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\munte\\AppData\\Roaming\\NuGet\\NuGet.Config",

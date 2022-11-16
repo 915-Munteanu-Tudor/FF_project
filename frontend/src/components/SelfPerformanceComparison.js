@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from 'react';
 import StocksController from "../controllers/StocksController";
-import './Comparisons.css';
+import './css/Comparisons.css';
 import MyChart from "./MyChart";
 
 

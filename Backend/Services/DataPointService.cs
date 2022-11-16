@@ -54,7 +54,7 @@ namespace Backend.Services
                         _dataPointRepository.SaveChanges();
                     }
 
-                    return result.Id;
+                    return result!.Id;
                 }
                 else
                 {

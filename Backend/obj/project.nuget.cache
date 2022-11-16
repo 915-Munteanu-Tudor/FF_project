@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xRDnqiQpg5qAF+0cT5vU1azMVb8NDsfQvo8lJ8FARaN7vsbJiag1ZbYE5vT1aI9Z6R2e2hwyDISm0hT/wP2Xuw==",
+  "dgSpecHash": "viPzq8z2dF0sQEE6CKdKPx7pSkAD4mxOQQeccoFXRSX4rg7/5/XefTT+s6yx7grl0COKIy+5b2nNbaYBuX9Lkg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\munte\\Documents\\tudor\\tudor_things\\stuff\\FF_project_all\\Backend\\Backend.csproj",
+  "projectFilePath": "C:\\Users\\munte\\Documents\\tudor\\tudor_things\\FF_project\\Backend\\Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\munte\\.nuget\\packages\\alphavantage.net.common\\2.0.2\\alphavantage.net.common.2.0.2.nupkg.sha512",
     "C:\\Users\\munte\\.nuget\\packages\\alphavantage.net.core\\2.0.2\\alphavantage.net.core.2.0.2.nupkg.sha512",

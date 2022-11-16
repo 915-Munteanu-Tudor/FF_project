@@ -29,11 +29,13 @@ const MyChart = (s1,s2,dataS1,dataS2,days) => {
         legend: {
         position: 'top',
         },
-        title: {
-        display: true,
-        text: '',
-        },
+      title: {
+      display: true,
+      text: '',
+      },
     },
+
+
   };
 
   console.log(days);

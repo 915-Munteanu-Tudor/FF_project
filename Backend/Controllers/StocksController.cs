@@ -34,11 +34,11 @@ namespace Backend.Controllers
         {            
             try
             {
-                StockTimeSeries stockTs = await stocksClient.GetTimeSeriesAsync(stockSymbol.Str, Interval.Daily, OutputSize.Compact, isAdjusted: true);
+                StockTimeSeries stockTs = await stocksClient.GetTimeSeriesAsync(stockSymbol.Str!, Interval.Daily, OutputSize.Compact, isAdjusted: true);
                 var dataPoints = stockTs.DataPoints.ToList().GetRange(0,7);
 
-                StockTimeSeries stockTsHourly = await stocksClient.GetTimeSeriesAsync(stockSymbol.Str, Interval.Min60, OutputSize.Full, isAdjusted: true);
-                var dataPointsIntra = stockTs.DataPoints.ToList();
+                StockTimeSeries stockTsHourly = await stocksClient.GetTimeSeriesAsync(stockSymbol.Str!, Interval.Min60, OutputSize.Full, isAdjusted: true);
+                var dataPointsIntra = stockTs.DataPoints.ToList().GetRange(0, 24);
 
 
                 foreach (var dataPoint in dataPoints)
@@ -47,7 +47,7 @@ namespace Backend.Controllers
                     {
                         await _dataPointService.AddDataPoint(
                                 new DataPoint(
-                                stockSymbol.Str,
+                                stockSymbol.Str!,
                                 dataPoint.ClosingPrice,
                                 dataPoint.HighestPrice,
                                 dataPoint.LowestPrice,
@@ -73,7 +73,7 @@ namespace Backend.Controllers
                     {
                         await _dataPointIntraDayService.AddDataPoint(
                                 new DataPointIntra(
-                                stockSymbol.Str,
+                                stockSymbol.Str!,
                                 dataPoint.ClosingPrice,
                                 dataPoint.HighestPrice,
                                 dataPoint.LowestPrice,
@@ -114,7 +114,7 @@ namespace Backend.Controllers
         {
             try
             {
-                var res = _dataPointService.performanceComparisonOfTwoStocks(stockSymbols.Str1, stockSymbols.Str2);
+                var res = _dataPointService.performanceComparisonOfTwoStocks(stockSymbols.Str1!, stockSymbols.Str2!);
                 return await res;
             }
             catch (Exception exc)
@@ -130,7 +130,7 @@ namespace Backend.Controllers
         {
             try
             {
-                var res = _dataPointService.selfPerformanceComparison(name.Str);
+                var res = _dataPointService.selfPerformanceComparison(name.Str!);
                 return await res;
             }
             catch (Exception exc)
@@ -146,7 +146,7 @@ namespace Backend.Controllers
         {
             try
             {
-                var res = _dataPointIntraDayService.selfPerformanceComparisonIntra(name.Str);
+                var res = _dataPointIntraDayService.selfPerformanceComparisonIntra(name.Str!);
                 return await res;
             }
             catch (Exception exc)
