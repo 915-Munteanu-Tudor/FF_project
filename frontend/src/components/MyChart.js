@@ -28,13 +28,55 @@ const MyChart = (s1,s2,dataS1,dataS2,days) => {
     plugins: {
         legend: {
         position: 'top',
-        },
+      },
+      tooltip: {
+        yAlign: 'bottom',
+        callbacks: {
+          label(tooltipItems) {
+            return `${tooltipItems.formattedValue} %`
+          }
+        }
+      },
       title: {
-      display: true,
-      text: '',
+        display: true,
+        text: '',
       },
     },
-
+    scales: {
+      x: {
+        grid : {
+          lineWidth: context => context.tick.value == 0 ? 2 : 0,
+          drawBorder: false,
+        },
+          ticks: {
+              callback: function() {
+                  return '';
+              }
+          }
+      },
+      y: {
+        suggestedMin: () => {
+          if (s2 === '')
+            return Math.abs(Math.floor(Math.min(...dataS1))) > Math.abs(Math.ceil(Math.max(...dataS1))) ? -Math.abs(Math.floor(Math.min(...dataS1))) : -Math.abs(Math.ceil(Math.max(...dataS1)));
+          else 
+            return -Math.max(Math.abs(Math.floor(Math.min(...dataS1))), Math.abs(Math.ceil(Math.max(...dataS1))), Math.abs(Math.floor(Math.min(...dataS2))), Math.abs(Math.ceil(Math.max(...dataS2))));
+        },
+        suggestedMax: () => {
+          if (s2 === '')
+            return Math.abs(Math.floor(Math.min(...dataS1))) > Math.abs(Math.ceil(Math.max(...dataS1))) ? Math.abs(Math.floor(Math.min(...dataS1))) : Math.abs(Math.ceil(Math.max(...dataS1)));
+          else 
+            return Math.max(Math.abs(Math.floor(Math.min(...dataS1))), Math.abs(Math.ceil(Math.max(...dataS1))), Math.abs(Math.floor(Math.min(...dataS2))), Math.abs(Math.ceil(Math.max(...dataS2))));
+        },
+        grid : {
+          lineWidth: context => context.tick.value == 0 ? 2 : 0,
+        },
+        ticks: {
+            callback: function(value) {
+                return value + ' %';
+              }
+          }
+      } 
+    } 
 
   };
 
@@ -62,7 +104,8 @@ const MyChart = (s1,s2,dataS1,dataS2,days) => {
   if (s2 === '') {
     dataOpt.datasets.pop();
   }
-            
+
+
   return (
     <div className='line'>
       <Line options={options} data={dataOpt} />
