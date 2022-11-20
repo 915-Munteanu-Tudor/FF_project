@@ -34,10 +34,7 @@ namespace Backend.Repository
         {
             return _dataContext.DataPointsDaily.Where(i => i.Name == name).ToList();
         }
-        public List<String> GetAllStockNames()
-        {
-            return _dataContext.DataPointsDaily.Select(i => i.Name).Distinct().ToList();
-        }
+
         public List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>> GetPerformanceBySymbol(String name)
         {
             var stock = GetByName(name);
