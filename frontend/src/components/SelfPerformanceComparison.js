@@ -70,7 +70,7 @@ const SelfPerformance = () => {
             </div>
             {  
                  display  && (
-                    MyChart(temp1,'',dataS1,[],days)
+                    <MyChart s1={temp1} s2={''} dataS1={dataS1} dataS2={[]} days={days} />
                 )
             }
         </div>

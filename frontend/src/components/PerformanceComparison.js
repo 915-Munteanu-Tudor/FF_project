@@ -80,7 +80,7 @@ const SeePerformance = () => {
             </div>
             {  
                  display  && (
-                    MyChart(temp1,temp2,dataS1,dataS2,days)
+                    <MyChart s1={temp1} s2={temp2} dataS1={dataS1} dataS2={dataS2} days={days} />
                 )
             }
         </div>

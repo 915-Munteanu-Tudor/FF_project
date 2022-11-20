@@ -41,7 +41,7 @@ const SelfPerformanceIntra = () => {
 
 
     useEffect(() => {
-        
+
         if (flag === false) {
             setDataS1([]);
             setDisplay(false);
@@ -52,7 +52,7 @@ const SelfPerformanceIntra = () => {
 
         let days_new = Array.from(new Set(data.map((item)=> item.value.value)));
         setDays(days_new);
-        console.log(days);  
+        console.log(days);
 
     }, [data,flag]);
 
@@ -70,7 +70,7 @@ const SelfPerformanceIntra = () => {
             </div>
             {  
                  display  && (
-                    MyChart(temp1,'',dataS1,[],days)
+                    <MyChart s1={temp1} s2={''} dataS1={dataS1} dataS2={[]} days={days} />
                 )
             }
         </div>
