@@ -12,7 +12,8 @@ import {
 import { Line } from 'react-chartjs-2';
 
 
-const MyChart = (s1,s2,dataS1,dataS2,days) => {
+//const MyChart = (s1,s2,dataS1,dataS2,days) => {
+const MyChart = props => {
   ChartJS.register(
       CategoryScale,
       LinearScale,
@@ -45,7 +46,7 @@ const MyChart = (s1,s2,dataS1,dataS2,days) => {
     scales: {
       x: {
         grid : {
-          lineWidth: context => context.tick.value == 0 ? 2 : 0,
+          lineWidth: context => context.tick.value === 0 ? 2 : 0,
           drawBorder: false,
         },
           ticks: {
@@ -56,19 +57,19 @@ const MyChart = (s1,s2,dataS1,dataS2,days) => {
       },
       y: {
         suggestedMin: () => {
-          if (s2 === '')
-            return Math.abs(Math.floor(Math.min(...dataS1))) > Math.abs(Math.ceil(Math.max(...dataS1))) ? -Math.abs(Math.floor(Math.min(...dataS1))) : -Math.abs(Math.ceil(Math.max(...dataS1)));
+          if (props.s2 === '')
+            return Math.abs(Math.floor(Math.min(...props.dataS1))) > Math.abs(Math.ceil(Math.max(...props.dataS1))) ? -Math.abs(Math.floor(Math.min(...props.dataS1))) : -Math.abs(Math.ceil(Math.max(...props.dataS1)));
           else 
-            return -Math.max(Math.abs(Math.floor(Math.min(...dataS1))), Math.abs(Math.ceil(Math.max(...dataS1))), Math.abs(Math.floor(Math.min(...dataS2))), Math.abs(Math.ceil(Math.max(...dataS2))));
+            return -Math.max(Math.abs(Math.floor(Math.min(...props.dataS1))), Math.abs(Math.ceil(Math.max(...props.dataS1))), Math.abs(Math.floor(Math.min(...props.dataS2))), Math.abs(Math.ceil(Math.max(...props.dataS2))));
         },
         suggestedMax: () => {
-          if (s2 === '')
-            return Math.abs(Math.floor(Math.min(...dataS1))) > Math.abs(Math.ceil(Math.max(...dataS1))) ? Math.abs(Math.floor(Math.min(...dataS1))) : Math.abs(Math.ceil(Math.max(...dataS1)));
+          if (props.s2 === '')
+            return Math.abs(Math.floor(Math.min(...props.dataS1))) > Math.abs(Math.ceil(Math.max(...props.dataS1))) ? Math.abs(Math.floor(Math.min(...props.dataS1))) : Math.abs(Math.ceil(Math.max(...props.dataS1)));
           else 
-            return Math.max(Math.abs(Math.floor(Math.min(...dataS1))), Math.abs(Math.ceil(Math.max(...dataS1))), Math.abs(Math.floor(Math.min(...dataS2))), Math.abs(Math.ceil(Math.max(...dataS2))));
+            return Math.max(Math.abs(Math.floor(Math.min(...props.dataS1))), Math.abs(Math.ceil(Math.max(...props.dataS1))), Math.abs(Math.floor(Math.min(...props.dataS2))), Math.abs(Math.ceil(Math.max(...props.dataS2))));
         },
         grid : {
-          lineWidth: context => context.tick.value == 0 ? 2 : 0,
+          lineWidth: context => context.tick.value === 0 ? 2 : 0,
         },
         ticks: {
             callback: function(value) {
@@ -80,20 +81,20 @@ const MyChart = (s1,s2,dataS1,dataS2,days) => {
 
   };
 
-  console.log(days);
+  console.log(props.days);
 
   const dataOpt = {
-    labels: days,
+    labels: props.days,
     datasets: [
         {
-        label: s1 ,
-        data: dataS1,
+        label: props.s1 ,
+        data: props.dataS1,
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
         },
         {
-        label: s2,
-        data: dataS2,
+        label: props.s2,
+        data: props.dataS2,
         borderColor: 'rgb(53, 162, 235)',
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
         },
@@ -101,7 +102,7 @@ const MyChart = (s1,s2,dataS1,dataS2,days) => {
   };
 
 
-  if (s2 === '') {
+  if (props.s2 === '') {
     dataOpt.datasets.pop();
   }
 

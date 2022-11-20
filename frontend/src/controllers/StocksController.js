@@ -17,16 +17,10 @@ class StocksController {
 
     async seePerformanceComparison(stockSymbol1, stockSymbol2) {
 
-        const user = {
-            str1: stockSymbol1,
-            str2: stockSymbol2
-        };
-
-        const response = await axios.post('/performance-comparison', user, {headers: {'Content-Type': 'application/json'}});
+        const response = await axios.get(`/performance-comparison?stockSymbol1=${stockSymbol1}&stockSymbol2=${stockSymbol2}`);
         if (response.data === "") {
             alert("Comparison failed!");
             return "fail";
-
         }
         else {
             return response.data;
@@ -35,11 +29,8 @@ class StocksController {
     }
 
     async seeSelfPerformance(stockSymbol) {
-        const user = {
-            str: stockSymbol,
-        };
 
-        const response = await axios.post('/self-performance-comparison', user, {headers: {'Content-Type': 'application/json'}});
+        const response = await axios.get(`/self-performance-comparison?stockSymbol=${stockSymbol}`);
         if (response.data === "") {
             alert("Comparison failed!");
             return "fail";
@@ -51,11 +42,8 @@ class StocksController {
     }
 
     async seeSelfPerformanceIntra(stockSymbol) {
-        const user = {
-            str: stockSymbol,
-        };
 
-        const response = await axios.post('/self-performance-comparison-intra', user, {headers: {'Content-Type': 'application/json'}});
+        const response = await axios.get(`/self-performance-comparison-intra?stockSymbol=${stockSymbol}`);
         if (response.data === "") {
             alert("Comparison failed!");
             return "fail";

@@ -108,13 +108,13 @@ namespace Backend.Controllers
 
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("performance-comparison")]
-        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> performanceComparison([FromBody] StockPair stockSymbols)
+        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> performanceComparison([FromQuery(Name = "stockSymbol1")] string stockSymbol1, [FromQuery(Name = "stockSymbol2")] string stockSymbol2)
         {
             try
             {
-                var res = _dataPointService.performanceComparisonOfTwoStocks(stockSymbols.Str1!, stockSymbols.Str2!);
+                var res = _dataPointService.performanceComparisonOfTwoStocks(stockSymbol1, stockSymbol2);
                 return await res;
             }
             catch (Exception exc)
@@ -124,13 +124,13 @@ namespace Backend.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("self-performance-comparison")]
-        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparison(StockName name)
+        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparison([FromQuery(Name = "stockSymbol")] string stockSymbol)
         {
             try
             {
-                var res = _dataPointService.selfPerformanceComparison(name.Str!);
+                var res = _dataPointService.selfPerformanceComparison(stockSymbol);
                 return await res;
             }
             catch (Exception exc)
@@ -140,13 +140,13 @@ namespace Backend.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("self-performance-comparison-intra")]
-        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparisonIntra(StockName name)
+        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparisonIntra([FromQuery(Name = "stockSymbol")] string stockSymbol)
         {
             try
             {
-                var res = _dataPointIntraDayService.selfPerformanceComparisonIntra(name.Str!);
+                var res = _dataPointIntraDayService.selfPerformanceComparisonIntra(stockSymbol!);
                 return await res;
             }
             catch (Exception exc)
