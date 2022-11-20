@@ -30,14 +30,14 @@ namespace Backend.Controllers
 
         [HttpPost]
         [Route("save")]
-        public async Task<IActionResult> InsertAsync([System.Web.Http.FromUri] StockName stockSymbol)
+        public async Task<IActionResult> InsertAsync([FromQuery(Name = "stockSymbol")] string stockSymbol)
         {            
             try
             {
-                StockTimeSeries stockTs = await stocksClient.GetTimeSeriesAsync(stockSymbol.Str!, Interval.Daily, OutputSize.Compact, isAdjusted: true);
+                StockTimeSeries stockTs = await stocksClient.GetTimeSeriesAsync(stockSymbol!, Interval.Daily, OutputSize.Compact, isAdjusted: true);
                 var dataPoints = stockTs.DataPoints.ToList().GetRange(0,7);
 
-                StockTimeSeries stockTsHourly = await stocksClient.GetTimeSeriesAsync(stockSymbol.Str!, Interval.Min60, OutputSize.Compact, isAdjusted: true);
+                StockTimeSeries stockTsHourly = await stocksClient.GetTimeSeriesAsync(stockSymbol!, Interval.Min60, OutputSize.Compact, isAdjusted: true);
                 var dataPointsIntra = stockTsHourly.DataPoints.ToList().GetRange(0, 24);
 
 
@@ -47,7 +47,7 @@ namespace Backend.Controllers
                     {
                         await _dataPointService.AddDataPoint(
                                 new DataPoint(
-                                stockSymbol.Str!,
+                                stockSymbol!,
                                 dataPoint.ClosingPrice,
                                 dataPoint.HighestPrice,
                                 dataPoint.LowestPrice,
@@ -73,7 +73,7 @@ namespace Backend.Controllers
                     {
                         await _dataPointIntraDayService.AddDataPoint(
                                 new DataPointIntra(
-                                stockSymbol.Str!,
+                                stockSymbol!,
                                 dataPoint.ClosingPrice,
                                 dataPoint.HighestPrice,
                                 dataPoint.LowestPrice,

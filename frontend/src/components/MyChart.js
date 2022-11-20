@@ -12,7 +12,6 @@ import {
 import { Line } from 'react-chartjs-2';
 
 
-//const MyChart = (s1,s2,dataS1,dataS2,days) => {
 const MyChart = props => {
   ChartJS.register(
       CategoryScale,

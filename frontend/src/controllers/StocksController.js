@@ -3,10 +3,7 @@ import axios from "axios";
 class StocksController {
     async insertStockInfo(stockSymbol) {
         try {
-            const user = {
-                str: stockSymbol
-            }
-            await axios.post('/save', user, {headers: {'Content-Type': 'application/json'}});
+            await axios.post(`/save?stockSymbol=${stockSymbol}`);
 
             alert("Successfully got info about a new stock!");
         } catch (error) {
