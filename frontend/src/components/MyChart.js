@@ -71,6 +71,7 @@ const MyChart = props => {
           lineWidth: context => context.tick.value === 0 ? 2 : 0,
         },
         ticks: {
+            stepSize: 3,
             callback: function(value) {
                 return value + ' %';
               }

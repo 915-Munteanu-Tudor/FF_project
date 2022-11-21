@@ -1,4 +1,4 @@
-import { BrowserRouter as Router,Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router,Navigate,Route, Routes } from 'react-router-dom';
 import './App.css';
 import AddStock from './components/GetStockInfo';
 import SeePerformance from './components/PerformanceComparison'
@@ -16,6 +16,10 @@ function App() {
             <Route exact path="/performance-comparison" element={<SeePerformance />}  />
             <Route exact path="/self-performance-comparison" element={<SelfPerformance />} />
             <Route exact path="/self-performance-comparison-intra" element={<SelfPerformanceIntra />} />
+            <Route
+              path="*"
+              element={<Navigate to="/" />}
+            />
           </Routes>
         </Router>
     </div>
