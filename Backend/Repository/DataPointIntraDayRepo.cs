@@ -23,7 +23,7 @@ namespace Backend.Repository
         {
             if (GetByName(dataPointIntra.Name).Count == 24)
             {
-                throw new ArgumentException("This stock symbol is already in the database!");
+                _dataContext.DataPointsIntraDay.RemoveRange(GetByName(dataPointIntra.Name));
             }
             return _dataContext.DataPointsIntraDay.Add(dataPointIntra).Entity;
         }
@@ -39,7 +39,7 @@ namespace Backend.Repository
 
             if (stock.Count() == 0)
             {
-                throw new ArgumentException("This stock symbol is nout in the database");
+                throw new ArgumentException("This stock symbol is not in the database");
             }
             var performanceLIst = new List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>();
 

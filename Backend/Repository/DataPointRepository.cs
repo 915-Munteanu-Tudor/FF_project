@@ -1,7 +1,6 @@
 ﻿using Backend.Config;
 using Backend.Models;
-using Backend.Services;
-using Microsoft.EntityFrameworkCore;
+using System.Xml.Linq;
 
 namespace Backend.Repository
 {
@@ -25,7 +24,7 @@ namespace Backend.Repository
         {
             if(GetByName(dataPoint.Name).Count == 7)
             {
-                throw new ArgumentException("This stock symbol is already in the database!");
+                _dataContext.DataPointsDaily.RemoveRange(GetByName(dataPoint.Name));
             }
             return _dataContext.DataPointsDaily.Add(dataPoint).Entity;
         }
@@ -41,7 +40,7 @@ namespace Backend.Repository
 
             if (stock.Count() == 0)
             {
-                throw new ArgumentException("This stock symbol is nout in the database");
+                throw new ArgumentException("This stock symbol is not in the database");
             }
             var performanceLIst = new List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>();
 

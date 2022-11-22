@@ -13,30 +13,15 @@ namespace Backend.Services
         }
         public async Task<int> AddDataPoint(DataPointIntra dataPointIntra)
         {
-            try
+            var result = _dataPointIntraDayRepo.Insert(dataPointIntra);
+            if (result != null)
             {
-                if (dataPointIntra != null)
-                {
-
-                    var result = _dataPointIntraDayRepo.Insert(dataPointIntra);
-                    if (result != null)
-                    {
-                        _dataPointIntraDayRepo.SaveChanges();
-                    }
-
-                    return result.Id;
-                }
-                else
-                {
-                    throw new ArgumentException("Could not save the Data Point!");
-                }
-            }
-            catch (Exception exc)
-            {
-                throw new ArgumentException(exc.Message);
+                _dataPointIntraDayRepo.SaveChanges();
             }
 
+            return result!.Id;
         }
+
         public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparisonIntra(String stock1)
         {
 

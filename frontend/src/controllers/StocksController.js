@@ -16,7 +16,7 @@ class StocksController {
 
         const response = await axios.get(`/performance-comparison?stockSymbol1=${stockSymbol1}&stockSymbol2=${stockSymbol2}`);
         if (response.data === "") {
-            alert("Comparison failed!");
+            alert("One or both stock symbols are not in the database!");
             return "fail";
         }
         else {
@@ -29,7 +29,7 @@ class StocksController {
 
         const response = await axios.get(`/self-performance-comparison?stockSymbol=${stockSymbol}`);
         if (response.data === "") {
-            alert("Comparison failed!");
+            alert("This stock symbol is not in the database!");
             return "fail";
 
         }
@@ -42,7 +42,7 @@ class StocksController {
 
         const response = await axios.get(`/self-performance-comparison-intra?stockSymbol=${stockSymbol}`);
         if (response.data === "") {
-            alert("Comparison failed!");
+            alert("This stock symbol is not in the database!");
             return "fail";
 
         }

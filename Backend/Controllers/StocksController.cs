@@ -6,7 +6,6 @@ using AlphaVantage.Net.Core.Client;
 using AlphaVantage.Net.Stocks;
 using AlphaVantage.Net.Stocks.Client;
 using Microsoft.AspNetCore.Mvc;
-using System.Web.Http.Description;
 
 namespace Backend.Controllers
 {
@@ -43,54 +42,30 @@ namespace Backend.Controllers
 
                 foreach (var dataPoint in dataPoints)
                 {
-                    try
-                    {
-                        await _dataPointService.AddDataPoint(
-                                new DataPoint(
-                                stockSymbol!,
-                                dataPoint.ClosingPrice,
-                                dataPoint.HighestPrice,
-                                dataPoint.LowestPrice,
-                                dataPoint.OpeningPrice,
-                                new DateTime(dataPoint.Time.Year, dataPoint.Time.Month, dataPoint.Time.Day, dataPoint.Time.Hour, dataPoint.Time.Minute, dataPoint.Time.Second),
-                                dataPoint.Volume
-                            ));
-                    }
-                    catch(Exception exc)
-                    {
-                        return BadRequest(new Response
-                        {
-                            Success = false,
-                            Message = "The Data Point for this stock symbol is already in database!",
-                            Errors = new List<String> { exc.Message }
-                        });
-                    }
+                    await _dataPointService.AddDataPoint(
+                            new DataPoint(
+                            stockSymbol!,
+                            dataPoint.ClosingPrice,
+                            dataPoint.HighestPrice,
+                            dataPoint.LowestPrice,
+                            dataPoint.OpeningPrice,
+                            new DateTime(dataPoint.Time.Year, dataPoint.Time.Month, dataPoint.Time.Day, dataPoint.Time.Hour, dataPoint.Time.Minute, dataPoint.Time.Second),
+                            dataPoint.Volume
+                        ));
                 }
 
                 foreach (var dataPoint in dataPointsIntra)
                 {
-                    try
-                    {
-                        await _dataPointIntraDayService.AddDataPoint(
-                                new DataPointIntra(
-                                stockSymbol!,
-                                dataPoint.ClosingPrice,
-                                dataPoint.HighestPrice,
-                                dataPoint.LowestPrice,
-                                dataPoint.OpeningPrice,
-                                new DateTime(dataPoint.Time.Year, dataPoint.Time.Month, dataPoint.Time.Day, dataPoint.Time.Hour, dataPoint.Time.Minute, dataPoint.Time.Second),
-                                dataPoint.Volume
-                            ));
-                    }
-                    catch (Exception exc)
-                    {
-                        return BadRequest(new Response
-                        {
-                            Success = false,
-                            Message = "The Data Point for this stock symbol is already in database!",
-                            Errors = new List<String> { exc.Message }
-                        });
-                    }
+                    await _dataPointIntraDayService.AddDataPoint(
+                            new DataPointIntra(
+                            stockSymbol!,
+                            dataPoint.ClosingPrice,
+                            dataPoint.HighestPrice,
+                            dataPoint.LowestPrice,
+                            dataPoint.OpeningPrice,
+                            new DateTime(dataPoint.Time.Year, dataPoint.Time.Month, dataPoint.Time.Day, dataPoint.Time.Hour, dataPoint.Time.Minute, dataPoint.Time.Second),
+                            dataPoint.Volume
+                        ));
                 }
 
                 return Ok(new Response { Success = true, Message = "Inserted all the Data Points successfully!" });
@@ -104,8 +79,6 @@ namespace Backend.Controllers
                     Errors = new List<String> { exc.Message }
                 });
             }
-            
-
         }
 
         [HttpGet]

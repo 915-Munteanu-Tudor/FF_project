@@ -43,28 +43,13 @@ namespace Backend.Services
 
         public async Task<int> AddDataPoint(DataPoint dataPoint)
         {
-            try
+            var result = _dataPointRepository.Insert(dataPoint);
+            if (result != null)
             {
-                if (dataPoint != null)
-                {
-
-                    var result = _dataPointRepository.Insert(dataPoint);
-                    if (result != null)
-                    {
-                        _dataPointRepository.SaveChanges();
-                    }
-
-                    return result!.Id;
-                }
-                else
-                {
-                    throw new ArgumentException("Could not save the Data Point!");
-                }
+                _dataPointRepository.SaveChanges();
             }
-            catch(Exception exc)
-            {
-                throw new ArgumentException(exc.Message);
-            }
+
+            return result!.Id;
 
         }
 
