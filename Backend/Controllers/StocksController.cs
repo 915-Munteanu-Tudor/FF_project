@@ -15,9 +15,9 @@ namespace Backend.Controllers
     {
         private readonly DataPointService _dataPointService;
         private readonly DataPointIntraDayService _dataPointIntraDayService;
-        private readonly String apiKey = "BD3RKUOGNZR8LYRZ";
-        private AlphaVantageClient client;
-        private StocksClient stocksClient;
+        private readonly string apiKey = "BD3RKUOGNZR8LYRZ";
+        private readonly AlphaVantageClient client;
+        private readonly StocksClient stocksClient;
 
         public StocksController(DataPointService dataPointService, DataPointIntraDayService dataPointIntraDayService)
         {
@@ -33,10 +33,10 @@ namespace Backend.Controllers
         {            
             try
             {
-                StockTimeSeries stockTs = await stocksClient.GetTimeSeriesAsync(stockSymbol!, Interval.Daily, OutputSize.Compact, isAdjusted: true);
+                StockTimeSeries stockTs = await stocksClient.GetTimeSeriesAsync(stockSymbol, Interval.Daily, OutputSize.Compact, isAdjusted: true);
                 var dataPoints = stockTs.DataPoints.ToList().GetRange(0,7);
 
-                StockTimeSeries stockTsHourly = await stocksClient.GetTimeSeriesAsync(stockSymbol!, Interval.Min60, OutputSize.Compact, isAdjusted: true);
+                StockTimeSeries stockTsHourly = await stocksClient.GetTimeSeriesAsync(stockSymbol, Interval.Min60, OutputSize.Compact, isAdjusted: true);
                 var dataPointsIntra = stockTsHourly.DataPoints.ToList().GetRange(0, 24);
 
 
@@ -44,7 +44,7 @@ namespace Backend.Controllers
                 {
                     await _dataPointService.AddDataPoint(
                             new DataPoint(
-                            stockSymbol!,
+                            stockSymbol,
                             dataPoint.ClosingPrice,
                             dataPoint.HighestPrice,
                             dataPoint.LowestPrice,
@@ -58,7 +58,7 @@ namespace Backend.Controllers
                 {
                     await _dataPointIntraDayService.AddDataPoint(
                             new DataPointIntra(
-                            stockSymbol!,
+                            stockSymbol,
                             dataPoint.ClosingPrice,
                             dataPoint.HighestPrice,
                             dataPoint.LowestPrice,
@@ -76,19 +76,18 @@ namespace Backend.Controllers
                 {
                     Success = false,
                     Message = "The Data Points could not be added",
-                    Errors = new List<String> { exc.Message }
+                    Errors = new List<string> { exc.Message }
                 });
             }
         }
 
         [HttpGet]
         [Route("performance-comparison")]
-        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> performanceComparison([FromQuery(Name = "stockSymbol1")] string stockSymbol1, [FromQuery(Name = "stockSymbol2")] string stockSymbol2)
+        public async Task<List<KeyValuePair<string, KeyValuePair<decimal, DateTime>>>> performanceComparison([FromQuery(Name = "stockSymbol1")] string stockSymbol1, [FromQuery(Name = "stockSymbol2")] string stockSymbol2)
         {
             try
             {
-                var res = _dataPointService.performanceComparisonOfTwoStocks(stockSymbol1, stockSymbol2);
-                return await res;
+                return await _dataPointService.performanceComparisonOfTwoStocks(stockSymbol1, stockSymbol2);
             }
             catch (Exception exc)
             {
@@ -99,12 +98,11 @@ namespace Backend.Controllers
 
         [HttpGet]
         [Route("self-performance-comparison")]
-        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparison([FromQuery(Name = "stockSymbol")] string stockSymbol)
+        public async Task<List<KeyValuePair<string, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparison([FromQuery(Name = "stockSymbol")] string stockSymbol)
         {
             try
             {
-                var res = _dataPointService.selfPerformanceComparison(stockSymbol);
-                return await res;
+                return await _dataPointService.selfPerformanceComparison(stockSymbol);
             }
             catch (Exception exc)
             {
@@ -115,12 +113,11 @@ namespace Backend.Controllers
 
         [HttpGet]
         [Route("self-performance-comparison-intra")]
-        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparisonIntra([FromQuery(Name = "stockSymbol")] string stockSymbol)
+        public async Task<List<KeyValuePair<string, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparisonIntra([FromQuery(Name = "stockSymbol")] string stockSymbol)
         {
             try
             {
-                var res = _dataPointIntraDayService.selfPerformanceComparisonIntra(stockSymbol!);
-                return await res;
+                return await _dataPointIntraDayService.selfPerformanceComparisonIntra(stockSymbol);
             }
             catch (Exception exc)
             {

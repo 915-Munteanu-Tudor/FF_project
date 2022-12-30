@@ -19,7 +19,7 @@ const SeePerformance = () => {
     const [display, setDisplay] = useState(false);
 
 
-    const handleSubmit = (e) => {
+    const handleClick = (e) => {
         e.preventDefault();
 
         setTemp1(symbol1)
@@ -44,6 +44,9 @@ const SeePerformance = () => {
 
     }
 
+    const handleSubmit = e => {
+        e.preventDefault();
+    }
 
     useEffect(() => {
         
@@ -67,7 +70,7 @@ const SeePerformance = () => {
     return (
         <div>
             <div>
-            <form >
+            <form onSubmit={handleSubmit}>
                 <h2>Get performance comparison for the last week of two stocks</h2>
                 <label>Symbol 1</label>{' '}
                 <input id="input1" type="text" placeholder="Symbol1"
@@ -75,7 +78,7 @@ const SeePerformance = () => {
                 <label>Symbol 2</label>{' '}
                 <input id="input2" type="text" placeholder="Symbol2"
                         onChange={e => setSymbol2(e.target.value)} /> {'  '}
-                <button type="button" onClick={handleSubmit}>See comparison</button>
+                <button type="button" onClick={handleClick}>See comparison</button>
             </form>
             </div>
             {  

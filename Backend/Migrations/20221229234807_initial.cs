@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Backend.Migrations
 {
-    public partial class addInitial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,11 +17,11 @@ namespace Backend.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ClosingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    HighestPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    LowestPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    OpeningPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    HighestPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    LowestPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    OpeningPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Time = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Volume = table.Column<long>(type: "bigint", nullable: false)
+                    Volume = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -36,11 +36,11 @@ namespace Backend.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ClosingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    HighestPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    LowestPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    OpeningPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    HighestPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    LowestPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    OpeningPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Time = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Volume = table.Column<long>(type: "bigint", nullable: false)
+                    Volume = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {

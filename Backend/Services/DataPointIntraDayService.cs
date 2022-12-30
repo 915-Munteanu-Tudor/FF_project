@@ -13,21 +13,21 @@ namespace Backend.Services
         }
         public async Task<int> AddDataPoint(DataPointIntra dataPointIntra)
         {
-            var result = _dataPointIntraDayRepo.Insert(dataPointIntra);
+            var result = await _dataPointIntraDayRepo.Insert(dataPointIntra);
             if (result != null)
             {
-                _dataPointIntraDayRepo.SaveChanges();
+                await _dataPointIntraDayRepo.SaveChanges();
             }
 
             return result!.Id;
         }
 
-        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparisonIntra(String stock1)
+        public async Task<List<KeyValuePair<string, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparisonIntra(string stock1)
         {
 
             try
             {
-                var performanceList = _dataPointIntraDayRepo.GetPerformanceBySymbol(stock1);
+                var performanceList = await _dataPointIntraDayRepo.GetPerformanceBySymbol(stock1);
                 return performanceList;
             }
             catch (Exception exc)

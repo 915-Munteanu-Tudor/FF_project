@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221107233543_addInitial")]
-    partial class addInitial
+    [Migration("20221229234807_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,23 +35,23 @@ namespace Backend.Migrations
                     b.Property<decimal>("ClosingPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("HighestPrice")
+                    b.Property<decimal?>("HighestPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("LowestPrice")
+                    b.Property<decimal?>("LowestPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("OpeningPrice")
+                    b.Property<decimal?>("OpeningPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Time")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("Volume")
+                    b.Property<long?>("Volume")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
@@ -70,23 +70,23 @@ namespace Backend.Migrations
                     b.Property<decimal>("ClosingPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("HighestPrice")
+                    b.Property<decimal?>("HighestPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("LowestPrice")
+                    b.Property<decimal?>("LowestPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("OpeningPrice")
+                    b.Property<decimal?>("OpeningPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Time")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("Volume")
+                    b.Property<long?>("Volume")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");

@@ -7,14 +7,18 @@ namespace Backend.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public decimal ClosingPrice { get; set; }
-        public decimal HighestPrice { get; set; }
-        public decimal LowestPrice { get; set; }
-        public decimal OpeningPrice { get; set; }
+        public decimal? HighestPrice { get; set; }
+        public decimal? LowestPrice { get; set; }
+        public decimal? OpeningPrice { get; set; }
+        [Required]
         public DateTime Time { get; set; }
-        public long Volume { get; set; }
-        public DataPointIntra(string name, decimal closingPrice, decimal highestPrice, decimal lowestPrice, decimal openingPrice, DateTime time, long volume)
+        public long? Volume { get; set; }
+
+        public DataPointIntra(string name, decimal closingPrice, decimal? highestPrice, decimal? lowestPrice, decimal? openingPrice, DateTime time, long? volume)
         {
             Name = name;
             ClosingPrice = closingPrice;

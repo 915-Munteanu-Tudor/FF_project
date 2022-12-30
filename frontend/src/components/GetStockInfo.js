@@ -6,9 +6,13 @@ import StocksController from "../controllers/StocksController";
 const AddStock = () => {
     const [symbol, setSymbol] = useState('');
 
-    const handleSubmit = e => {
+    const handleClick = e => {
         e.preventDefault();
         StocksController.insertStockInfo(symbol);
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
     }
 
     return (
@@ -18,7 +22,7 @@ const AddStock = () => {
                 <label>Symbol</label>{' '}
                 <input type="text" placeholder="Symbol"
                             onChange={e => setSymbol(e.target.value)} /> {' '}
-                <button>Get Info</button>
+                <button type="button" onClick={handleClick}>Get Info</button>
 
             </form>
         </div>

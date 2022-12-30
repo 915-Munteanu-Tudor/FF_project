@@ -12,12 +12,12 @@ namespace Backend.Services
             _dataPointRepository = dataPointRepository;
         }
 
-        public async Task<List<KeyValuePair<String, KeyValuePair<decimal,DateTime>>>> performanceComparisonOfTwoStocks(String stock1, String stock2)
+        public async Task<List<KeyValuePair<string, KeyValuePair<decimal,DateTime>>>> performanceComparisonOfTwoStocks(string stock1, string stock2)
         {
             try
             {
-                var performanceList = _dataPointRepository.GetPerformanceBySymbol(stock1);
-                performanceList.AddRange(_dataPointRepository.GetPerformanceBySymbol(stock2));
+                var performanceList = await _dataPointRepository.GetPerformanceBySymbol(stock1);
+                performanceList.AddRange(await _dataPointRepository.GetPerformanceBySymbol(stock2));
                 return performanceList;
             } 
             catch(Exception exc)
@@ -27,11 +27,11 @@ namespace Backend.Services
             
         }
 
-        public async Task<List<KeyValuePair<String, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparison(String stock1)
+        public async Task<List<KeyValuePair<string, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparison(string stock1)
         {
             try
             {
-                var performanceList = _dataPointRepository.GetPerformanceBySymbol(stock1);
+                var performanceList = await _dataPointRepository.GetPerformanceBySymbol(stock1);
                 return performanceList;
             }
             catch (Exception exc)
@@ -43,10 +43,10 @@ namespace Backend.Services
 
         public async Task<int> AddDataPoint(DataPoint dataPoint)
         {
-            var result = _dataPointRepository.Insert(dataPoint);
+            var result = await _dataPointRepository.Insert(dataPoint);
             if (result != null)
             {
-                _dataPointRepository.SaveChanges();
+                await _dataPointRepository.SaveChanges();
             }
 
             return result!.Id;

@@ -16,7 +16,7 @@ const SelfPerformanceIntra = () => {
     const [display, setDisplay] = useState(false);
 
 
-    const handleSubmit = (e) => {
+    const handleClick = (e) => {
         e.preventDefault();
 
         setTemp1(symbol1)
@@ -39,6 +39,9 @@ const SelfPerformanceIntra = () => {
 
     }
 
+    const handleSubmit = e => {
+        e.preventDefault();
+    }
 
     useEffect(() => {
 
@@ -60,12 +63,12 @@ const SelfPerformanceIntra = () => {
     return (
         <div>
             <div>
-            <form >
+            <form onSubmit={handleSubmit}>
                 <h2>Get self performance comparison for the last week of a stock intraday</h2>
                 <label>Symbol 1</label>{' '}
                 <input id="input1" type="text" placeholder="Symbol1"
                         onChange={e => setSymbol1(e.target.value)} /> {' '}
-                <button type="button" onClick={handleSubmit}>See comparison</button>
+                <button type="button" onClick={handleClick}>See comparison</button>
             </form>
             </div>
             {  
