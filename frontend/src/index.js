@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://localhost:44353/api/Stocks';
+axios.defaults.baseURL = 'http://localhost:35805/api/Stocks';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

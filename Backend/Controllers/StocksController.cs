@@ -68,7 +68,7 @@ namespace Backend.Controllers
                         ));
                 }
 
-                return Ok(new Response { Success = true, Message = "Inserted all the Data Points successfully!" });
+                return StatusCode(201, new Response { Success = true, Message = "The Data Points were successfully added!" });
             }
             catch (Exception exc)
             {
@@ -83,46 +83,58 @@ namespace Backend.Controllers
 
         [HttpGet]
         [Route("performance-comparison")]
-        public async Task<List<KeyValuePair<string, KeyValuePair<decimal, DateTime>>>> performanceComparison([FromQuery(Name = "stockSymbol1")] string stockSymbol1, [FromQuery(Name = "stockSymbol2")] string stockSymbol2)
+        public async Task<IActionResult> performanceComparison([FromQuery(Name = "stockSymbol1")] string stockSymbol1, [FromQuery(Name = "stockSymbol2")] string stockSymbol2)
         {
             try
             {
-                return await _dataPointService.performanceComparisonOfTwoStocks(stockSymbol1, stockSymbol2);
+                return Ok(await _dataPointService.performanceComparisonOfTwoStocks(stockSymbol1, stockSymbol2));
             }
             catch (Exception exc)
             {
-                var x = exc.Message;
-                return null;
+                return BadRequest(new Response
+                {
+                    Success = false,
+                    Message = "One or both stock symbols are not in the database!",
+                    Errors = new List<string> { exc.Message }
+                });
             }
         }
 
         [HttpGet]
         [Route("self-performance-comparison")]
-        public async Task<List<KeyValuePair<string, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparison([FromQuery(Name = "stockSymbol")] string stockSymbol)
+        public async Task<IActionResult> selfPerformanceComparison([FromQuery(Name = "stockSymbol")] string stockSymbol)
         {
             try
             {
-                return await _dataPointService.selfPerformanceComparison(stockSymbol);
+                return Ok(await _dataPointService.selfPerformanceComparison(stockSymbol));
             }
             catch (Exception exc)
             {
-                var x = exc.Message;
-                return null;
+                return BadRequest(new Response
+                {
+                    Success = false,
+                    Message = "This stock symbol is not in the database!",
+                    Errors = new List<string> { exc.Message }
+                });
             }
         }
 
         [HttpGet]
         [Route("self-performance-comparison-intra")]
-        public async Task<List<KeyValuePair<string, KeyValuePair<decimal, DateTime>>>> selfPerformanceComparisonIntra([FromQuery(Name = "stockSymbol")] string stockSymbol)
+        public async Task<IActionResult> selfPerformanceComparisonIntra([FromQuery(Name = "stockSymbol")] string stockSymbol)
         {
             try
             {
-                return await _dataPointIntraDayService.selfPerformanceComparisonIntra(stockSymbol);
+                return Ok(await _dataPointIntraDayService.selfPerformanceComparisonIntra(stockSymbol));
             }
             catch (Exception exc)
             {
-                var x = exc.Message;
-                return null;
+                return BadRequest(new Response
+                {
+                    Success = false,
+                    Message = "This stock symbol is not in the database!",
+                    Errors = new List<string> { exc.Message }
+                });
             }
         }
     }

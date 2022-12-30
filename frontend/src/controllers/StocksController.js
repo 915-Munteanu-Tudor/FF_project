@@ -1,56 +1,55 @@
 import axios from "axios";
 
 class StocksController {
-    async insertStockInfo(stockSymbol) {
-        try {
-            await axios.post(`/save?stockSymbol=${stockSymbol}`);
+  async insertStockInfo(stockSymbol) {
+    try {
+      const resp = await axios.post(`/save?stockSymbol=${stockSymbol}`);
 
-            alert("Successfully got info about a new stock!");
-        } catch (error) {
-            console.error("error-insert",  error.response.data.message);
-            alert(error.response.data.message);
-        }
+      alert(resp.data.message);
+    } catch (error) {
+      console.error(error.response.data.message);
+      alert(error.response.data.message);
     }
+  }
 
-    async seePerformanceComparison(stockSymbol1, stockSymbol2) {
+  async seePerformanceComparison(stockSymbol1, stockSymbol2) {
+    try {
+      const response = await axios.get(
+        `/performance-comparison?stockSymbol1=${stockSymbol1}&stockSymbol2=${stockSymbol2}`
+      );
 
-        const response = await axios.get(`/performance-comparison?stockSymbol1=${stockSymbol1}&stockSymbol2=${stockSymbol2}`);
-        if (response.data === "") {
-            alert("One or both stock symbols are not in the database!");
-            return "fail";
-        }
-        else {
-            return response.data;
-        }
-
+      return response.data;
+    } catch (error) {
+      alert(error.response.data.message);
+      return "fail";
     }
+  }
 
-    async seeSelfPerformance(stockSymbol) {
+  async seeSelfPerformance(stockSymbol) {
+    try {
+      const response = await axios.get(
+        `/self-performance-comparison?stockSymbol=${stockSymbol}`
+      );
 
-        const response = await axios.get(`/self-performance-comparison?stockSymbol=${stockSymbol}`);
-        if (response.data === "") {
-            alert("This stock symbol is not in the database!");
-            return "fail";
-
-        }
-        else {
-            return response.data;
-        }
+      return response.data;
+    } catch (error) {
+      alert(error.response.data.message);
+      return "fail";
     }
+  }
 
-    async seeSelfPerformanceIntra(stockSymbol) {
+  async seeSelfPerformanceIntra(stockSymbol) {
+    try {
+      const response = await axios.get(
+        `/self-performance-comparison-intra?stockSymbol=${stockSymbol}`
+      );
 
-        const response = await axios.get(`/self-performance-comparison-intra?stockSymbol=${stockSymbol}`);
-        if (response.data === "") {
-            alert("This stock symbol is not in the database!");
-            return "fail";
-
-        }
-        else {
-            console.log(response.data);
-            return response.data;
-        }
+      return response.data;
+    } catch (error) {
+      alert(error.response.data.message);
+      return "fail";
     }
+  }
 }
 
 export default new StocksController();

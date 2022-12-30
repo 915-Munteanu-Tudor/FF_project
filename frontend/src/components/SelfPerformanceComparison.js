@@ -64,7 +64,7 @@ const SelfPerformance = () => {
         <div>
             <div>
             <form onSubmit={handleSubmit}>
-                <h2>Get self performance comparison for the last week of a stock</h2>
+                <h2>Self performance comparison for the last week of a stock</h2>
                 <label>Symbol 1</label>{' '}
                 <input id="input1" type="text" placeholder="Symbol1"
                         onChange={e => setSymbol1(e.target.value)} /> {' '}

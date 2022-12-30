@@ -71,7 +71,7 @@ const SeePerformance = () => {
         <div>
             <div>
             <form onSubmit={handleSubmit}>
-                <h2>Get performance comparison for the last week of two stocks</h2>
+                <h2>Performance comparison for the last week of two stocks</h2>
                 <label>Symbol 1</label>{' '}
                 <input id="input1" type="text" placeholder="Symbol1"
                         onChange={e => setSymbol1(e.target.value)} /> {' '}
